@@ -11,14 +11,15 @@
     <title><?php wp_title()?></title>
 </head>
 <body>
-<?php wp_head() ?>
+<?php wp_head() ;
+$number = "+380"?>
 <header class="header">
   <a href="<?php echo get_home_url()?>">
       <div class="header-logo logo">
         <?php echo get_custom_logo()?>
       </a>
     </div>
-    <a class="phone-number" href="tel:<?php echo get_option('site_telephone'); ?>">Call us: <?php echo get_option('site_telephone')?></a>
+    <a class="phone-number" type="number" href="tel:<?php echo $number .get_option('site_telephone'); ?>">Call us: <?php echo $number .get_option('site_telephone')?></a>
    <span class="header-bg"></span>
 </header>
 

@@ -144,7 +144,7 @@ function extra_fields_box_func($post)
 
 function my_extra_fields_update($post_id)
 {
-    // базовая проверка
+
     if (
         empty($_POST['extra'])
         || !wp_verify_nonce($_POST['extra_fields_nonce'], __FILE__)
@@ -153,15 +153,15 @@ function my_extra_fields_update($post_id)
     )
         return false;
 
-    // Все ОК! Теперь, нужно сохранить/удалить данные
-    $_POST['extra'] = array_map('sanitize_text_field', $_POST['extra']); // чистим все данные от пробелов по краям
+
+    $_POST['extra'] = array_map('sanitize_text_field', $_POST['extra']);
     foreach ($_POST['extra'] as $key => $value) {
         if (empty($value)) {
-            delete_post_meta($post_id, $key); // удаляем поле если значение пустое
+            delete_post_meta($post_id, $key);
             continue;
         }
 
-        update_post_meta($post_id, $key, $value); // add_post_meta() работает автоматически
+        update_post_meta($post_id, $key, $value);
     }
 
     return $post_id;
@@ -189,7 +189,7 @@ function mytheme_customize_register($wp_customize)
     $wp_customize->add_control(
         'site_telephone_control',
         array(
-            'type' => 'text',
+            'type' => 'number',
             'label' => "Phone number",
             'section' => 'data_site_section',
             'settings' => 'site_telephone'
